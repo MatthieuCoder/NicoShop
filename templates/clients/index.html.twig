@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandsController!{% endblock %}
+
+{% block body %}
+	<div class="p-4">
+		<h1 class="text-2xl">Bienvenue dans NicoShop
+			{% if app.user != null %},
+				{{app.user.prenom}}
+				{{app.user.nom}}
+			{% endif %}
+		</h1>
+		<div class="grid gap-4 grid-cols-2 mt-4">
+			{% for client in clients %}
+				<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+					ID: {{ client.id }} <br/>
+                    Email: {{client.email}} <br/>
+                    Nom: {{client.nom}} <br/>
+                    Prenom: {{client.prenom}} <br/>
+                    Code postal: {{client.codePostal}} <br/>
+                    Adresse: {{client.addresse}} <br/>
+
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

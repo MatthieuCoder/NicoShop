@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandsController!{% endblock %}
+
+{% block body %}
+	<div class="p-4">
+		<h1 class="text-2xl">Bienvenue dans NicoShop
+			{% if app.user != null %},
+				{{app.user.prenom}}
+				{{app.user.nom}}
+			{% endif %}
+		</h1>
+		<div class="grid gap-4 grid-cols-2 mt-4">
+			{% for commande in commandes %}
+				<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+					Commande par {{ commande.commandes.nom }} {{ commande.commandes.prenom }} <br/>
+                    Adresse de livraison: {{ commande.AdresseLivraison }} <br/>
+                    Code postal: {{ commande.CodePostalLivraison }} <br/>
+                    Date de commande: {{ commande.date|format_datetime() }} <br/>
+                    {% for item in commande.produits %}
+                        Item: {{item.libelle}}
+                    {% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
